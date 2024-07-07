@@ -41,14 +41,14 @@ jobs:
          deploymentName: ${{ github.run_number }}
          scope: resourcegroup
          resourceGroupName: ${{ inputs.resourceGroupName }}
-         template: ./deploy/resourcegroups.bicep
+         template: ./deploy/resources.bicep
          parameters: > 
           ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
          deploymentMode: Validate 
-         
+
   preview:
     runs-on: ubuntu-latest
     needs: [validate]
@@ -75,7 +75,7 @@ jobs:
         additionalArguments: --what-if
 
   deploy:
-    needs: validate
+    needs: [validate,preview]
     environment: ${{ inputs.deploymentEnvironment }}
     runs-on: ubuntu-latest
     steps:
