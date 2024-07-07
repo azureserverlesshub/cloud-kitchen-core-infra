@@ -2,9 +2,6 @@ name: deploy-cloud-kitchen-core-infra
 concurrency: cloud-kitchen-company
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
