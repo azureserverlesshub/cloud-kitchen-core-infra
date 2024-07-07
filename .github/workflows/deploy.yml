@@ -3,10 +3,13 @@ name: deploy
 on:
   workflow_call:
     inputs:
-      environmentType:
+      deploymentEnvironment:
         required: true
         type: string
       deploymentRegion:
+        required: true
+        type: string
+      deploymentEntity:
         required: true
         type: string
     secrets:
@@ -37,12 +40,16 @@ jobs:
          scope: subscription
          region: ${{ inputs.deploymentRegion }}
          template: ./deploy/main.bicep
-         parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam deploymentRegion=${{ inputs.deploymentRegion }}
+         parameters: > 
+          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          deploymentRegion=${{ inputs.deploymentRegion }}
+          deploymentEnvironment=${{ inputs.deploymentEnvironment }}
+          deploymentEntity=${{ inputs.deploymentEntity }}
          deploymentMode: Validate 
       
   deploy:
     needs: validate
-    environment: ${{ inputs.environmentType }}
+    environment: ${{ inputs.deploymentEnvironment }}
     runs-on: ubuntu-latest
     outputs:
       appServiceAppHostName: ${{ steps.deploy.outputs.appServiceAppHostName }}
@@ -63,4 +70,8 @@ jobs:
         scope: subscription
         region: ${{ inputs.deploymentRegion }}
         template: ./deploy/main.bicep
-        parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam deploymentRegion=${{ inputs.deploymentRegion }}
+        parameters: > 
+          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          deploymentRegion=${{ inputs.deploymentRegion }}
+          deploymentEnvironment=${{ inputs.deploymentEnvironment }}
+          deploymentEntity=${{ inputs.deploymentEntity }}

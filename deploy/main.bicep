@@ -1,10 +1,13 @@
 targetScope= 'subscription'
 param  deploymentRegion string
+param  deploymentEnvironment string
+param  deploymentEntity string
 
 module resourceGroup 'module/resourcegroup.bicep' = {
   name: 'core-resource-group'
   params: {
     resourceGroupLocation: deploymentRegion
-    resourceGroupEntity: 'core'
+    resourceGroupEntity: deploymentEntity
+    resourceGroupEnvironment:deploymentEnvironment
   }
 }
