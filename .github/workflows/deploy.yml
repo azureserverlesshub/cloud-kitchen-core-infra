@@ -40,9 +40,6 @@ jobs:
          parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam deploymentRegion=${{ inputs.deploymentRegion }}
          deploymentMode: Validate 
       
-     - run: echo ${{ steps.deploy2.outputs.deploymentRegion }}
-
-
   deploy:
     needs: validate
     environment: ${{ inputs.environmentType }}
@@ -63,8 +60,7 @@ jobs:
       with:
         failOnStdErr: false
         deploymentName: ${{ github.run_number }}
-        resourceGroupName: ${{ inputs.resourceGroupName }}
+        scope: subscription
+        region: ${{ inputs.deploymentRegion }}
         template: ./deploy/main.bicep
-        parameters: >
-          environmentType=${{ inputs.environmentType }}
-          ./deploy/parameters/${{ inputs.environmentType }}.bicepparam
+        parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam deploymentRegion=${{ inputs.deploymentRegion }}
