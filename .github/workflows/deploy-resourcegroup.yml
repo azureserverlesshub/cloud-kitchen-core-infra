@@ -19,6 +19,9 @@ on:
         required: true
       AZURE_SUBSCRIPTION_ID:
         required: true
+    outputs:
+      resourceGroupName:
+        value: ${{ jobs.deploy.outputs.resourceGroupName }}
 
 jobs:
   validate:
