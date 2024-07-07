@@ -33,7 +33,7 @@ jobs:
        name: Run preflight validation
        with:
          deploymentName: ${{ github.run_number }}
-         resourceGroupName: ${{ inputs.resourceGroupName }}
+         scope: subscription
          template: ./deploy/main.bicep
          parameters: >
            environmentType=${{ inputs.environmentType }}

@@ -23,7 +23,6 @@ jobs:
     needs: lint
     with:
       environmentType: DEVV
-      resourceGroupName: ToyWebsiteTest
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID}}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
