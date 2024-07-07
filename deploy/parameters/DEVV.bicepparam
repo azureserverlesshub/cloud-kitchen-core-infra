@@ -1,5 +1,5 @@
-using '../main.bicep'
+using '../resourcegroups.bicep'
 
 param deploymentRegion = 'ukwest'
-param deploymentEntity =  'core'
+param deploymentEntity =  'cloud-kitchen-core'
 param deploymentEnvironment =  'DEVV'

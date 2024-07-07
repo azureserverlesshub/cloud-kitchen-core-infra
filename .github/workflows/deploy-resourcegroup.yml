@@ -39,7 +39,7 @@ jobs:
          deploymentName: ${{ github.run_number }}
          scope: subscription
          region: ${{ inputs.deploymentRegion }}
-         template: ./deploy/main.bicep
+         template: ./deploy/resourcegroups.bicep
          parameters: > 
           ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
@@ -52,7 +52,7 @@ jobs:
     environment: ${{ inputs.deploymentEnvironment }}
     runs-on: ubuntu-latest
     outputs:
-      appServiceAppHostName: ${{ steps.deploy.outputs.appServiceAppHostName }}
+      resourceGroupName: ${{ steps.deploy.outputs.resourceGroupName }}
     steps:
     - uses: actions/checkout@v3
     - uses: azure/login@v1
@@ -69,7 +69,7 @@ jobs:
         deploymentName: ${{ github.run_number }}
         scope: subscription
         region: ${{ inputs.deploymentRegion }}
-        template: ./deploy/main.bicep
+        template: ./deploy/resourcegroups.bicep
         parameters: > 
           ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}

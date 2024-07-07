@@ -11,3 +11,5 @@ module resourceGroup 'module/resourcegroup.bicep' = {
     resourceGroupEnvironment:deploymentEnvironment
   }
 }
+
+output resourceGroupName string = resourceGroup.outputs.resourceGroupName
