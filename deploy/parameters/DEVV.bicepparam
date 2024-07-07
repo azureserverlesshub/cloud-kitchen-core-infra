@@ -1,3 +1,3 @@
 using '../main.bicep'
 
-param deploymentRegion = 'uksouth'
+param deploymentRegion = 'ukwest'

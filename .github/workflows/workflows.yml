@@ -23,6 +23,7 @@ jobs:
     needs: lint
     with:
       environmentType: DEVV
+      deploymentRegion: uksouth
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID}}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}

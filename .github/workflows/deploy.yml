@@ -6,6 +6,9 @@ on:
       environmentType:
         required: true
         type: string
+      deploymentRegion:
+        required: true
+        type: string
     secrets:
       AZURE_CLIENT_ID:
         required: true
@@ -32,8 +35,9 @@ jobs:
        with:
          deploymentName: ${{ github.run_number }}
          scope: subscription
+         region: ${{ inputs.deploymentRegion }}
          template: ./deploy/main.bicep
-         parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam  environmentType=${{ inputs.environmentType }}
+         parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam deploymentRegion=${{ inputs.deploymentRegion }}
          deploymentMode: Validate 
       
      - run: echo ${{ steps.deploy2.outputs.deploymentRegion }}
