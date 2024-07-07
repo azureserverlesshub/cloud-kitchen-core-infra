@@ -14,13 +14,20 @@ permissions:
 jobs:
 
   # Lint the Bicep file.
-  lint:
+  lint-resource-group:
     uses: ./.github/workflows/lint.yml
+    with:
+      fileName: deploy/resourcegroups.bicep
+  
+  lint-resources:
+    uses: ./.github/workflows/lint.yml
+    with:
+      fileName: deploy/resources.bicep
 
   # Deploy to the dev environment.
   deploy-resource-group-devv:
     uses: ./.github/workflows/deploy-resourcegroup.yml
-    needs: lint
+    needs: lint-resource-group
     with:
       deploymentEnvironment: DEVV
       deploymentRegion: uksouth
@@ -33,13 +40,12 @@ jobs:
   # Deploy to the dev environment.
   deploy-resource-devv:
     uses: ./.github/workflows/deploy-resources.yml
-    needs: deploy-resource-group-devv
+    needs: [lint-resources , deploy-resource-group-devv]
     with:
       deploymentEnvironment: DEVV
       deploymentRegion: uksouth
       deploymentEntity: core
       resourceGroupName: ${{needs.deploy-resource-group-devv.outputs.resourceGroupName}}
-
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID}}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}

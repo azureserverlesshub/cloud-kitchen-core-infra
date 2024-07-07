@@ -2,6 +2,10 @@ name: lint
 
 on:
   workflow_call:
+    inputs:
+      fileName:
+        required: true
+        type: string
 
 jobs:
   lint:
@@ -12,4 +16,4 @@ jobs:
 
     - name: Lint code
       run: |
-        az bicep build --file deploy/main.bicep
+        az bicep build --file ${{ inputs.fileName}}
