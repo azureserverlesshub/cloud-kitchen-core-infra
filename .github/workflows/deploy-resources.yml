@@ -36,12 +36,11 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
      - if: inputs.deploymentEnvironment != 'Production'
        uses: azure/arm-deploy@v1
-       id: deploy2
        name: Run preflight validation
        with:
          deploymentName: ${{ github.run_number }}
-         scope: subscription
-         region: ${{ inputs.deploymentRegion }}
+         scope: resourcegroup
+         resourceGroupName: ${{ inputs.resourceGroupName }}
          template: ./deploy/resourcegroups.bicep
          parameters: > 
           ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
@@ -63,11 +62,12 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     - uses: azure/arm-deploy@v1
-      id: deploy
+      id: deploys
       name: Deploy Bicep file
       with:
         failOnStdErr: false
         deploymentName: ${{ github.run_number }}
+        scope: resourcegroup
         resourceGroupName: ${{ inputs.resourceGroupName }}
         template: ./deploy/resources.bicep
         parameters: > 

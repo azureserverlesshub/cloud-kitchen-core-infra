@@ -75,3 +75,4 @@ jobs:
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
+    - run: echo ${{ steps.deploy.outputs.resourceGroupName }}
