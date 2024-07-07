@@ -27,15 +27,17 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
      - if: inputs.environmentType != 'Production'
        uses: azure/arm-deploy@v1
+       id: deploy2
        name: Run preflight validation
        with:
          deploymentName: ${{ github.run_number }}
          scope: subscription
          template: ./deploy/main.bicep
-         parameters: >
-           environmentType=${{ inputs.environmentType }}
-           ./deploy/parameters/${{ inputs.environmentType }}.bicepparam
+         parameters: ./deploy/parameters/${{ inputs.environmentType }}.bicepparam  environmentType=${{ inputs.environmentType }}
          deploymentMode: Validate 
+      
+     - run: echo ${{ steps.deploy2.outputs.deploymentRegion }}
+
 
   deploy:
     needs: validate
