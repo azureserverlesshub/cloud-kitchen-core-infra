@@ -46,20 +46,6 @@ jobs:
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
          deploymentMode: Validate 
-     - if: inputs.deploymentEnvironment != 'Production'
-       uses: azure/arm-deploy@v1
-       name: Run preflight validation
-       with:
-        deploymentName: ${{ github.run_number }}
-        scope: subscription
-        region: ${{ inputs.deploymentRegion }}
-        template: ./deploy/main.bicep
-        parameters: > 
-          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
-          deploymentRegion=${{ inputs.deploymentRegion }}
-          deploymentEnvironment=${{ inputs.deploymentEnvironment }}
-          deploymentEntity=${{ inputs.deploymentEntity }}
-        deploymentMode: what-if 
       
   deploy:
     needs: validate
