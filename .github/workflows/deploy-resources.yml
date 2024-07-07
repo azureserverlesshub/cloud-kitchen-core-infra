@@ -43,7 +43,7 @@ jobs:
          resourceGroupName: ${{ inputs.resourceGroupName }}
          template: ./deploy/resources.bicep
          parameters: > 
-          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          ./deploy/parameters/resources.${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
@@ -68,7 +68,7 @@ jobs:
         resourceGroupName: ${{ inputs.resourceGroupName }}
         template: ./deploy/resources.bicep
         parameters: > 
-          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          ./deploy/parameters/resources.${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
@@ -96,7 +96,7 @@ jobs:
         resourceGroupName: ${{ inputs.resourceGroupName }}
         template: ./deploy/resources.bicep
         parameters: > 
-          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          ./deploy/parameters/resources.${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}

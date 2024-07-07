@@ -44,7 +44,7 @@ jobs:
          region: ${{ inputs.deploymentRegion }}
          template: ./deploy/resourcegroups.bicep
          parameters: > 
-          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          ./deploy/parameters/resourcegroup.${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
@@ -74,7 +74,7 @@ jobs:
         region: ${{ inputs.deploymentRegion }}
         template: ./deploy/resourcegroups.bicep
         parameters: > 
-          ./deploy/parameters/${{ inputs.deploymentEnvironment }}.bicepparam 
+          ./deploy/parameters/resourcegroup.${{ inputs.deploymentEnvironment }}.bicepparam 
           deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
