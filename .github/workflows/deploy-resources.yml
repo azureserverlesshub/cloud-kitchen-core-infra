@@ -44,7 +44,6 @@ jobs:
          template: ./deploy/resources.bicep
          parameters: > 
           ./deploy/parameters/resources.${{ inputs.deploymentEnvironment }}.bicepparam 
-          deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
          deploymentMode: Validate 
@@ -69,7 +68,6 @@ jobs:
         template: ./deploy/resources.bicep
         parameters: > 
           ./deploy/parameters/resources.${{ inputs.deploymentEnvironment }}.bicepparam 
-          deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
         additionalArguments: --what-if
@@ -97,6 +95,5 @@ jobs:
         template: ./deploy/resources.bicep
         parameters: > 
           ./deploy/parameters/resources.${{ inputs.deploymentEnvironment }}.bicepparam 
-          deploymentRegion=${{ inputs.deploymentRegion }}
           deploymentEnvironment=${{ inputs.deploymentEnvironment }}
           deploymentEntity=${{ inputs.deploymentEntity }}
