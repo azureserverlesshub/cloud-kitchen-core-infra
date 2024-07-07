@@ -1,3 +1,4 @@
+targetScope = 'resourceGroup'
 param  deploymentEnvironment string
 param  deploymentEntity string
 

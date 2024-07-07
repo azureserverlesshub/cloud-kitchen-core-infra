@@ -25,7 +25,7 @@ jobs:
       fileName: deploy/resources.bicep
 
   # Deploy to the dev environment.
-  deploy-resource-group-devv:
+  deploy-resourcegroup-devv:
     uses: ./.github/workflows/deploy-resourcegroup.yml
     needs: lint-resource-group
     with:
@@ -40,12 +40,12 @@ jobs:
   # Deploy to the dev environment.
   deploy-resource-devv:
     uses: ./.github/workflows/deploy-resources.yml
-    needs:  [lint-resources,deploy-resource-group-devv]
+    needs:  [lint-resources,deploy-resourcegroup-devv]
     with:
       deploymentEnvironment: DEVV
       deploymentRegion: uksouth
       deploymentEntity: core
-      resourceGroupName: ${{needs.deploy-resource-group-devv.outputs.resourceGroupName}}
+      resourceGroupName: ${{needs.deploy-resourcegroup-devv.outputs.resourceGroupName}}
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID}}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
