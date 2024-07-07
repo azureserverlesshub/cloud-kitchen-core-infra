@@ -10,3 +10,11 @@ module servicebusNamespace 'module/servicebusnamespace.bicep' =  {
     entityName: deploymentEntity
   }
 }
+
+module cosmosdbaccount 'module/cosmosdb.bicep' = {
+  name: 'core-cosmosdb-account'
+  params: {
+    entityEnvironment: deploymentEnvironment
+    entityName: deploymentEntity
+  }
+}
